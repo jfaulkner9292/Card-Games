@@ -74,6 +74,13 @@ public class main
 			if (userInput.equals("yes") || userInput.equals("no"))
 				validInput = true;
 		}
+		
+		//Code to start a game goes here
+		//For now, just runs goFish
+		goFish goFishGame = new goFish();
+		goFishGame.setup();
+		
+		input.close();
 	} 
 	
 	private static void ListGames(ArrayList gameList)

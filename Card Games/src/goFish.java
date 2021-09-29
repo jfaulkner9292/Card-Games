@@ -1,3 +1,6 @@
+import java.util.Scanner;
+
+//Determine number of players NEED TO DECIDE RANGE
 //Deal 5 cards to each player
 //Ask player number if they have any #
 //	If they have the asked # card, they give any cards with that #
@@ -10,5 +13,39 @@
 //One point per 4 of a kind
 public class goFish 
 {
+	Scanner input = new Scanner(System.in);
+	
+	public static void main(String []args)
+	{
+		
+	}
+	
+	public void setup()
+	{
+		String userInput;
+		System.out.println("How many players?");
+		
+		userInput = input.nextLine();
+		
+		while (!isInt(userInput)) //HAVE A SET RANGE OF PLAYERS AND CHECK HERE
+		{
+			System.out.println("Please enter a whole number");
+			userInput = input.nextLine();
+		}
+		
+	}
+	
+	public boolean isInt(String possibleInt)
+	{
+		try
+		{
+			Integer.parseInt(possibleInt);
+			return true;
+		}
+		catch (NumberFormatException ex)
+		{
+			return false;
+		}
+	}
 
 }
