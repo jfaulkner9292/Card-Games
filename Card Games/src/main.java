@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class main 
 {
@@ -7,22 +9,79 @@ public class main
 	public static void main(String []args) 
 	{
 		
-		System.out.println(System.getProperty("java.runtime.version"));
-		//card cards[] = new card[53];
+		//System.out.println(System.getProperty("java.runtime.version"));
 		
-		card cards[] = createDeck();
+		//Creates an array of card objects 
+		card cards[] = createDeck(); 
 		
-		//System.out.println(cards[52].getCard());
+		//Creats a scanner object for the user to use as input
+		Scanner input = new Scanner(System.in);
 		
 		
+		ArrayList<String> gameList = new ArrayList<String>();
+		gameList.add("Go Fish");
+		gameList.add("52 Card Pickup");
+		
+		//String[] gameList = {"Go Fish", "52 Card Pickup"};
+		
+		PickGame(gameList, input);
+		
+		/* CODE TO SHUFFLE THE DECK
 		cards = shuffleDeck(cards);
 		System.out.println("The deck has been shuffled!");
 		
 		showDeck(cards);
+		*/
+		
 		
 		
 	}
 	
+	private static void PickGame(ArrayList gameList, Scanner input) 
+	{
+		boolean validInput = false;
+		
+		ListGames(gameList);
+		
+		String userInput = input.nextLine();
+		
+		String selectedGame = userInput;
+		
+		while (gameList.contains(selectedGame) == false)
+		{
+			System.out.println("That is not a valid game, please choose one from the list!");
+			
+			ListGames(gameList);
+			
+			selectedGame = input.nextLine();
+		}
+		
+		
+		System.out.println("You chose: " + selectedGame);
+		
+		System.out.println("Would you like to start? (Yes/No)");
+		
+		userInput = input.nextLine().toLowerCase();
+		
+		if (userInput.equals("yes") || userInput.equals("no"))
+			validInput = true;
+		
+		while (validInput == false)
+		{
+			System.out.println("Not valid input");
+			userInput = input.nextLine().toLowerCase();
+			
+			if (userInput.equals("yes") || userInput.equals("no"))
+				validInput = true;
+		}
+	} 
+	
+	private static void ListGames(ArrayList gameList)
+	{
+		System.out.println("Choose a game to play: \n");
+		for (int i = 0; i < gameList.size(); i++)
+			System.out.println(gameList.get(i));
+	}
 	
 	private static card[] createDeck()
 	{
